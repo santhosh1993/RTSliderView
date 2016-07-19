@@ -16,6 +16,8 @@
 		E0A1D5201D3CEE9200343306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */; };
 		E0A1D52B1D3CEE9200343306 /* RTSliderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D52A1D3CEE9200343306 /* RTSliderViewTests.m */; };
 		E0A1D5361D3CEE9200343306 /* RTSliderViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5351D3CEE9200343306 /* RTSliderViewUITests.m */; };
+		E0A1D5451D3CEEA400343306 /* RTSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5441D3CEEA400343306 /* RTSliderView.m */; };
+		E0A1D5471D3D0C0100343306 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D5461D3D0C0100343306 /* slider_thumb.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		E0A1D5311D3CEE9200343306 /* RTSliderViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSliderViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A1D5351D3CEE9200343306 /* RTSliderViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSliderViewUITests.m; sourceTree = "<group>"; };
 		E0A1D5371D3CEE9200343306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0A1D5431D3CEEA400343306 /* RTSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSliderView.h; sourceTree = "<group>"; };
+		E0A1D5441D3CEEA400343306 /* RTSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSliderView.m; sourceTree = "<group>"; };
+		E0A1D5461D3D0C0100343306 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +112,9 @@
 				E0A1D5111D3CEE9200343306 /* AppDelegate.m */,
 				E0A1D5131D3CEE9200343306 /* ViewController.h */,
 				E0A1D5141D3CEE9200343306 /* ViewController.m */,
+				E0A1D5431D3CEEA400343306 /* RTSliderView.h */,
+				E0A1D5441D3CEEA400343306 /* RTSliderView.m */,
+				E0A1D5461D3D0C0100343306 /* slider_thumb.png */,
 				E0A1D5161D3CEE9200343306 /* Main.storyboard */,
 				E0A1D51C1D3CEE9200343306 /* Assets.xcassets */,
 				E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */,
@@ -247,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0A1D5201D3CEE9200343306 /* LaunchScreen.storyboard in Resources */,
+				E0A1D5471D3D0C0100343306 /* slider_thumb.png in Resources */,
 				E0A1D51D1D3CEE9200343306 /* Assets.xcassets in Resources */,
 				E0A1D5181D3CEE9200343306 /* Main.storyboard in Resources */,
 			);
@@ -273,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0A1D5451D3CEEA400343306 /* RTSliderView.m in Sources */,
 				E0A1D5151D3CEE9200343306 /* ViewController.m in Sources */,
 				E0A1D51B1D3CEE9200343306 /* RTSliderView.xcdatamodeld in Sources */,
 				E0A1D5121D3CEE9200343306 /* AppDelegate.m in Sources */,
