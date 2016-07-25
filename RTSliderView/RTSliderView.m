@@ -63,6 +63,7 @@
     
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.userInteractionEnabled = YES;
+    
     [self addSubview:(__sliderType == SliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
     self.sliderImg = [UIImage imageNamed:@"slider_thumb"];
     
@@ -146,10 +147,10 @@
 {
     CGPoint translation = [recognizer translationInView:self];
     
-    if (tapView.frame.origin.x + translation.x >= 0 && tapView.frame.origin.x + translation.x <= self.frame.size.width - 40)
+    if (tapView.frame.origin.x + translation.x >= 0 && tapView.frame.origin.x + translation.x <= barView.bounds.size.width)
     {
         tapView.frame = CGRectMake(tapView.frame.origin.x + translation.x, tapView.frame.origin.y, tapView.frame.size.width, tapView.frame.size.height);
-        double value = (tapView.frame.origin.x)/(self.frame.size.width - 40);
+        double value = (tapView.frame.origin.x)/barView.bounds.size.width;
         NSNumber *percentageCovered = [NSNumber numberWithDouble:value*self.maximumValue];
 
         if (self.isContinuous) {
@@ -172,6 +173,10 @@
     {
         [self moveTheView:leftTapView WithTranslation:translation withGestureState:recognizer.state];
     }
+    else if (leftTapView.frame.origin.x + translation.x < 0){
+        translation = CGPointMake(-leftTapView.frame.origin.x, translation.y);
+        [self moveTheView:leftTapView WithTranslation:translation withGestureState:recognizer.state];
+    }
     [recognizer setTranslation:CGPointZero inView:self];
 }
 
@@ -180,8 +185,12 @@
     
     CGPoint translation = [recognizer translationInView:self];
     
-    if (rightTapView.frame.origin.x + translation.x <= self.frame.size.width - 40 && rightTapView.frame.origin.x + translation.x >= leftTapView.frame.origin.x)
+    if (rightTapView.frame.origin.x + translation.x <= barView.bounds.size.width && rightTapView.frame.origin.x + translation.x >= leftTapView.frame.origin.x)
     {
+        [self moveTheView:rightTapView WithTranslation:translation withGestureState:recognizer.state];
+    }
+    else if (rightTapView.frame.origin.x + translation.x < 0){
+        translation = CGPointMake(-rightTapView.frame.origin.x, translation.y);
         [self moveTheView:rightTapView WithTranslation:translation withGestureState:recognizer.state];
     }
     [recognizer setTranslation:CGPointZero inView:self];
@@ -190,9 +199,25 @@
 - (void)moveTheView:(UIView *)movableView WithTranslation:(CGPoint)translation withGestureState:(UIGestureRecognizerState)state
 {
     [movableView.superview bringSubviewToFront:movableView];
-    movableView.frame = CGRectMake(movableView.frame.origin.x + translation.x, movableView.frame.origin.y, movableView.frame.size.width, movableView.frame.size.height);
-    double leftValue = (leftTapView.frame.origin.x)/(self.frame.size.width - 40);
-    double rightValue = (rightTapView.frame.origin.x)/(self.frame.size.width - 40);
+    CGRect rect = movableView.frame;
+    if ([movableView isEqual:leftTapView]) {
+        CGRect tempRect = CGRectMake(movableView.frame.origin.x + translation.x, movableView.frame.origin.y, movableView.frame.size.width, movableView.frame.size.height);
+        if (CGRectGetMaxX(tempRect) < CGRectGetMidX(rightTapView.frame)) {
+            rect = tempRect;
+        }
+    }
+    else if ([movableView isEqual:rightTapView]) {
+        CGRect tempRect = CGRectMake(movableView.frame.origin.x + translation.x, movableView.frame.origin.y, movableView.frame.size.width, movableView.frame.size.height);
+        
+        if (CGRectGetMinX(tempRect) > CGRectGetMidX(leftTapView.frame)) {
+            rect = tempRect;
+        }
+        
+    }
+    
+    movableView.frame = rect;
+    double leftValue = (leftTapView.frame.origin.x)/barView.bounds.size.width;
+    double rightValue = (rightTapView.frame.origin.x)/barView.bounds.size.width;
 
     NSNumber *percentageleftCovered = [NSNumber numberWithDouble:self.minimumValue + (self.maximumValue - self.minimumValue)*leftValue];
     NSNumber *percentageRightCovered = [NSNumber numberWithDouble:rightValue*self.maximumValue];
@@ -233,7 +258,7 @@
 
 - (void)setSingleSliderPostion:(double)position
 {
-    double xPos = position * (self.bounds.size.width - 40)/self.maximumValue;
+    double xPos = position * barView.bounds.size.width/self.maximumValue;
     NSLog(@"%f",xPos);
     
     tapView.frame = CGRectMake(xPos,tapView.frame.origin.y,tapView.frame.size.width,tapView.frame.size.height);
@@ -242,10 +267,13 @@
 - (void)setleftSliderPosition:(double)leftPosition andRightPosition:(double)rightPosition
 {
 
-    double xPos = (leftPosition - self.minimumValue)/(self.frame.size.width - 40);
+    double xPos = (leftPosition - self.minimumValue)/barView.bounds.size.width;
     leftTapView.frame = CGRectMake(xPos,leftTapView.frame.origin.y,leftTapView.frame.size.width,leftTapView.frame.size.height);
-    
-    xPos = (self.frame.size.width - 40) - ((self.maximumValue - rightPosition)/(self.frame.size.width - 40));
+    NSLog(@"left: %f",xPos);
+
+    xPos = ((rightPosition - self.minimumValue)*barView.bounds.size.width/self.maximumValue);
+    NSLog(@"right: %f",xPos);
+
     rightTapView.frame = CGRectMake(xPos,rightTapView.frame.origin.y,rightTapView.frame.size.width,rightTapView.frame.size.height);
 }
 
