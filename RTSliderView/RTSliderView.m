@@ -23,8 +23,8 @@
 @end
 
 @implementation RTSliderView
-@synthesize sliderType = __sliderType;
-@synthesize sliderImg = _sliderImg;
+@synthesize sliderType = sliderType;
+@synthesize sliderImg = sliderImg;
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -37,7 +37,7 @@
 - (instancetype)initWithFrame:(CGRect)frame ForSlider:(SliderType)noOfSlider
 {
     self = [super initWithFrame:frame];
-    __sliderType = noOfSlider;
+    sliderType = noOfSlider;
     
     [self initializer];
     return self;
@@ -64,7 +64,7 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.userInteractionEnabled = YES;
     
-    [self addSubview:(__sliderType == SliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
+    [self addSubview:(sliderType == SliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
     self.sliderImg = [UIImage imageNamed:@"slider_thumb"];
     
 }
@@ -220,7 +220,7 @@
     double rightValue = (rightTapView.frame.origin.x)/barView.bounds.size.width;
 
     NSNumber *percentageleftCovered = [NSNumber numberWithDouble:self.minimumValue + (self.maximumValue - self.minimumValue)*leftValue];
-    NSNumber *percentageRightCovered = [NSNumber numberWithDouble:rightValue*self.maximumValue];
+    NSNumber *percentageRightCovered = [NSNumber numberWithDouble:self.minimumValue + (self.maximumValue - self.minimumValue)*rightValue];
 
     if (self.isContinuous) {
         [self valueChanged:@[percentageleftCovered,percentageRightCovered]];
@@ -248,30 +248,48 @@
 }
 
 
-- (void)setSliderImg:(UIImage *)sliderImg
+- (void)setSliderImg:(UIImage *)img
 {
-    leftSliderImg.image = sliderImg;
-    rightSliderImg.image = sliderImg;
+    leftSliderImg.image = img;
+    rightSliderImg.image = img;
 }
 
 #pragma mark - PUBLIC METHODS
 
-- (void)setSingleSliderPostion:(double)position
+- (void)setSingleSliderPostion:(double)value
 {
-    double xPos = position * barView.bounds.size.width/self.maximumValue;
-    NSLog(@"%f",xPos);
+    assert(self.minimumValue <= value);
+    assert(self.sliderType == SliderTypeSingleSlider);
+
+    if (self.minimumValue < value && value < self.maximumValue) {
+        double xPos = (value - self.minimumValue) * barView.bounds.size.width/(self.maximumValue - self.minimumValue);
+        NSLog(@"%f",xPos);
+        
+        tapView.frame = CGRectMake(xPos,tapView.frame.origin.y,tapView.frame.size.width,tapView.frame.size.height);
+    }
+    else {
+        
+    }
     
-    tapView.frame = CGRectMake(xPos,tapView.frame.origin.y,tapView.frame.size.width,tapView.frame.size.height);
 }
 
-- (void)setleftSliderPosition:(double)leftPosition andRightPosition:(double)rightPosition
+- (void)setleftSliderPosition:(double)leftValue andRightPosition:(double)rightValue
 {
 
-    double xPos = (leftPosition - self.minimumValue)/barView.bounds.size.width;
+    //given values should be valid
+    assert(self.minimumValue <= leftValue);
+    assert(self.maximumValue >= rightValue);
+    assert(leftValue < rightValue);
+    assert(self.maximumValue > self.minimumValue);
+
+    //slider should be Dual slider
+    assert(self.sliderType == SliderTypeDoubleSlider);
+
+    double xPos = (leftValue - self.minimumValue)*barView.bounds.size.width/(self.maximumValue - self.minimumValue);
     leftTapView.frame = CGRectMake(xPos,leftTapView.frame.origin.y,leftTapView.frame.size.width,leftTapView.frame.size.height);
     NSLog(@"left: %f",xPos);
 
-    xPos = ((rightPosition - self.minimumValue)*barView.bounds.size.width/self.maximumValue);
+    xPos = ((rightValue - self.minimumValue)*barView.bounds.size.width/(self.maximumValue - self.minimumValue));
     NSLog(@"right: %f",xPos);
 
     rightTapView.frame = CGRectMake(xPos,rightTapView.frame.origin.y,rightTapView.frame.size.width,rightTapView.frame.size.height);

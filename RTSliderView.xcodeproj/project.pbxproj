@@ -14,28 +14,9 @@
 		E0A1D51B1D3CEE9200343306 /* RTSliderView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5191D3CEE9200343306 /* RTSliderView.xcdatamodeld */; };
 		E0A1D51D1D3CEE9200343306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51C1D3CEE9200343306 /* Assets.xcassets */; };
 		E0A1D5201D3CEE9200343306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */; };
-		E0A1D52B1D3CEE9200343306 /* RTSliderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D52A1D3CEE9200343306 /* RTSliderViewTests.m */; };
-		E0A1D5361D3CEE9200343306 /* RTSliderViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5351D3CEE9200343306 /* RTSliderViewUITests.m */; };
 		E0A1D5451D3CEEA400343306 /* RTSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5441D3CEEA400343306 /* RTSliderView.m */; };
 		E0A1D5471D3D0C0100343306 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D5461D3D0C0100343306 /* slider_thumb.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E0A1D5271D3CEE9200343306 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E0A1D5021D3CEE9200343306 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E0A1D5091D3CEE9200343306;
-			remoteInfo = RTSliderView;
-		};
-		E0A1D5321D3CEE9200343306 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E0A1D5021D3CEE9200343306 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E0A1D5091D3CEE9200343306;
-			remoteInfo = RTSliderView;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E0A1D50A1D3CEE9200343306 /* RTSliderView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTSliderView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,12 +30,6 @@
 		E0A1D51C1D3CEE9200343306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0A1D51F1D3CEE9200343306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0A1D5211D3CEE9200343306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0A1D5261D3CEE9200343306 /* RTSliderViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSliderViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0A1D52A1D3CEE9200343306 /* RTSliderViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSliderViewTests.m; sourceTree = "<group>"; };
-		E0A1D52C1D3CEE9200343306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0A1D5311D3CEE9200343306 /* RTSliderViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTSliderViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0A1D5351D3CEE9200343306 /* RTSliderViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSliderViewUITests.m; sourceTree = "<group>"; };
-		E0A1D5371D3CEE9200343306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0A1D5431D3CEEA400343306 /* RTSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSliderView.h; sourceTree = "<group>"; };
 		E0A1D5441D3CEEA400343306 /* RTSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSliderView.m; sourceTree = "<group>"; };
 		E0A1D5461D3D0C0100343306 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
@@ -68,20 +43,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E0A1D5231D3CEE9200343306 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E0A1D52E1D3CEE9200343306 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -89,8 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				E0A1D50C1D3CEE9200343306 /* RTSliderView */,
-				E0A1D5291D3CEE9200343306 /* RTSliderViewTests */,
-				E0A1D5341D3CEE9200343306 /* RTSliderViewUITests */,
 				E0A1D50B1D3CEE9200343306 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,8 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				E0A1D50A1D3CEE9200343306 /* RTSliderView.app */,
-				E0A1D5261D3CEE9200343306 /* RTSliderViewTests.xctest */,
-				E0A1D5311D3CEE9200343306 /* RTSliderViewUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,24 +90,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E0A1D5291D3CEE9200343306 /* RTSliderViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				E0A1D52A1D3CEE9200343306 /* RTSliderViewTests.m */,
-				E0A1D52C1D3CEE9200343306 /* Info.plist */,
-			);
-			path = RTSliderViewTests;
-			sourceTree = "<group>";
-		};
-		E0A1D5341D3CEE9200343306 /* RTSliderViewUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E0A1D5351D3CEE9200343306 /* RTSliderViewUITests.m */,
-				E0A1D5371D3CEE9200343306 /* Info.plist */,
-			);
-			path = RTSliderViewUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,42 +110,6 @@
 			productReference = E0A1D50A1D3CEE9200343306 /* RTSliderView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E0A1D5251D3CEE9200343306 /* RTSliderViewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E0A1D53D1D3CEE9200343306 /* Build configuration list for PBXNativeTarget "RTSliderViewTests" */;
-			buildPhases = (
-				E0A1D5221D3CEE9200343306 /* Sources */,
-				E0A1D5231D3CEE9200343306 /* Frameworks */,
-				E0A1D5241D3CEE9200343306 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E0A1D5281D3CEE9200343306 /* PBXTargetDependency */,
-			);
-			name = RTSliderViewTests;
-			productName = RTSliderViewTests;
-			productReference = E0A1D5261D3CEE9200343306 /* RTSliderViewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E0A1D5301D3CEE9200343306 /* RTSliderViewUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E0A1D5401D3CEE9200343306 /* Build configuration list for PBXNativeTarget "RTSliderViewUITests" */;
-			buildPhases = (
-				E0A1D52D1D3CEE9200343306 /* Sources */,
-				E0A1D52E1D3CEE9200343306 /* Frameworks */,
-				E0A1D52F1D3CEE9200343306 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E0A1D5331D3CEE9200343306 /* PBXTargetDependency */,
-			);
-			name = RTSliderViewUITests;
-			productName = RTSliderViewUITests;
-			productReference = E0A1D5311D3CEE9200343306 /* RTSliderViewUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,14 +121,6 @@
 				TargetAttributes = {
 					E0A1D5091D3CEE9200343306 = {
 						CreatedOnToolsVersion = 7.3.1;
-					};
-					E0A1D5251D3CEE9200343306 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = E0A1D5091D3CEE9200343306;
-					};
-					E0A1D5301D3CEE9200343306 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = E0A1D5091D3CEE9200343306;
 					};
 				};
 			};
@@ -243,8 +138,6 @@
 			projectRoot = "";
 			targets = (
 				E0A1D5091D3CEE9200343306 /* RTSliderView */,
-				E0A1D5251D3CEE9200343306 /* RTSliderViewTests */,
-				E0A1D5301D3CEE9200343306 /* RTSliderViewUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,20 +151,6 @@
 				E0A1D5471D3D0C0100343306 /* slider_thumb.png in Resources */,
 				E0A1D51D1D3CEE9200343306 /* Assets.xcassets in Resources */,
 				E0A1D5181D3CEE9200343306 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E0A1D5241D3CEE9200343306 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E0A1D52F1D3CEE9200343306 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,36 +169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E0A1D5221D3CEE9200343306 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0A1D52B1D3CEE9200343306 /* RTSliderViewTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E0A1D52D1D3CEE9200343306 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0A1D5361D3CEE9200343306 /* RTSliderViewUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E0A1D5281D3CEE9200343306 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E0A1D5091D3CEE9200343306 /* RTSliderView */;
-			targetProxy = E0A1D5271D3CEE9200343306 /* PBXContainerItemProxy */;
-		};
-		E0A1D5331D3CEE9200343306 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E0A1D5091D3CEE9200343306 /* RTSliderView */;
-			targetProxy = E0A1D5321D3CEE9200343306 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E0A1D5161D3CEE9200343306 /* Main.storyboard */ = {
@@ -445,52 +295,6 @@
 			};
 			name = Release;
 		};
-		E0A1D53E1D3CEE9200343306 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = RTSliderViewTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.-.-.RTSliderViewTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTSliderView.app/RTSliderView";
-			};
-			name = Debug;
-		};
-		E0A1D53F1D3CEE9200343306 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = RTSliderViewTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.-.-.RTSliderViewTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTSliderView.app/RTSliderView";
-			};
-			name = Release;
-		};
-		E0A1D5411D3CEE9200343306 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = RTSliderViewUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.-.-.RTSliderViewUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = RTSliderView;
-			};
-			name = Debug;
-		};
-		E0A1D5421D3CEE9200343306 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = RTSliderViewUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.-.-.RTSliderViewUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = RTSliderView;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -510,22 +314,7 @@
 				E0A1D53C1D3CEE9200343306 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		E0A1D53D1D3CEE9200343306 /* Build configuration list for PBXNativeTarget "RTSliderViewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E0A1D53E1D3CEE9200343306 /* Debug */,
-				E0A1D53F1D3CEE9200343306 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		E0A1D5401D3CEE9200343306 /* Build configuration list for PBXNativeTarget "RTSliderViewUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E0A1D5411D3CEE9200343306 /* Debug */,
-				E0A1D5421D3CEE9200343306 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

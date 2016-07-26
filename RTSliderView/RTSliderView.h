@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SliderViewDelegate;
-
-@interface RTSliderView : UIView
 
 typedef NS_ENUM(NSInteger,SliderType)
 {
@@ -18,11 +15,16 @@ typedef NS_ENUM(NSInteger,SliderType)
     SliderTypeDoubleSlider = 2,
 };
 
-@property (nonatomic,weak) id<SliderViewDelegate> delegate;
-@property (nonatomic,weak) UIColor *barColor;
-@property (nonatomic,weak) IBInspectable UIImage *sliderImg;
+@protocol SliderViewDelegate;
+
+@interface RTSliderView : UIView
 
 @property (nonatomic, readonly) SliderType sliderType;
+
+@property (nonatomic,weak) id<SliderViewDelegate> delegate;
+
+@property (nonatomic,weak) UIColor *barColor;
+@property (nonatomic,weak) UIImage *sliderImg;
 
 @property(nonatomic, getter=isContinuous) BOOL continuous;
 
@@ -30,8 +32,8 @@ typedef NS_ENUM(NSInteger,SliderType)
 @property(nonatomic) float maximumValue;
 
 - (instancetype)initWithFrame:(CGRect)frame ForSlider:(SliderType)noOfSlider;
-- (void)setSingleSliderPostion:(double)position;
-- (void)setleftSliderPosition:(double)leftPosition andRightPosition:(double)rightPosition;
+- (void)setSingleSliderPostion:(double)value;
+- (void)setleftSliderPosition:(double)leftValue andRightPosition:(double)rightValue;
 
 @end
 

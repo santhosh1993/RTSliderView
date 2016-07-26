@@ -32,6 +32,9 @@
     self.dualSlider.delegate = self;
     self.singleSlider.continuous = true;
     
+    self.singleSlider.minimumValue = 10;
+    self.dualSlider.minimumValue = 100;
+
     self.singleSlider.maximumValue = 50;
     self.dualSlider.maximumValue = 500;
     
