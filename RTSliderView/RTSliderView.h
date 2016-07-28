@@ -24,12 +24,14 @@ typedef NS_ENUM(NSInteger,SliderType)
 @property (nonatomic,weak) id<SliderViewDelegate> delegate;
 
 @property (nonatomic,weak) UIColor *barColor;
-@property (nonatomic,weak) UIImage *sliderImg;
+@property (nonatomic,weak) UIColor *selectedPortionColor;
+@property (nonatomic,weak) IBInspectable UIImage *sliderImg;
 
-@property(nonatomic, getter=isContinuous) BOOL continuous;
+@property(nonatomic, getter=isContinuous)IBInspectable BOOL continuous;
 
-@property(nonatomic) float minimumValue;
-@property(nonatomic) float maximumValue;
+
+@property(nonatomic)IBInspectable float minimumValue;
+@property(nonatomic)IBInspectable float maximumValue;
 
 - (instancetype)initWithFrame:(CGRect)frame ForSlider:(SliderType)noOfSlider;
 - (void)setSingleSliderPostion:(double)value;

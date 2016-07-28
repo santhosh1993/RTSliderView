@@ -11,7 +11,6 @@
 		E0A1D5121D3CEE9200343306 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5111D3CEE9200343306 /* AppDelegate.m */; };
 		E0A1D5151D3CEE9200343306 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5141D3CEE9200343306 /* ViewController.m */; };
 		E0A1D5181D3CEE9200343306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D5161D3CEE9200343306 /* Main.storyboard */; };
-		E0A1D51B1D3CEE9200343306 /* RTSliderView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5191D3CEE9200343306 /* RTSliderView.xcdatamodeld */; };
 		E0A1D51D1D3CEE9200343306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51C1D3CEE9200343306 /* Assets.xcassets */; };
 		E0A1D5201D3CEE9200343306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */; };
 		E0A1D5451D3CEEA400343306 /* RTSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A1D5441D3CEEA400343306 /* RTSliderView.m */; };
@@ -26,7 +25,6 @@
 		E0A1D5131D3CEE9200343306 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E0A1D5141D3CEE9200343306 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0A1D5171D3CEE9200343306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E0A1D51A1D3CEE9200343306 /* RTSliderView.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RTSliderView.xcdatamodel; sourceTree = "<group>"; };
 		E0A1D51C1D3CEE9200343306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0A1D51F1D3CEE9200343306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0A1D5211D3CEE9200343306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 				E0A1D51C1D3CEE9200343306 /* Assets.xcassets */,
 				E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */,
 				E0A1D5211D3CEE9200343306 /* Info.plist */,
-				E0A1D5191D3CEE9200343306 /* RTSliderView.xcdatamodeld */,
 				E0A1D50D1D3CEE9200343306 /* Supporting Files */,
 			);
 			path = RTSliderView;
@@ -163,7 +160,6 @@
 			files = (
 				E0A1D5451D3CEEA400343306 /* RTSliderView.m in Sources */,
 				E0A1D5151D3CEE9200343306 /* ViewController.m in Sources */,
-				E0A1D51B1D3CEE9200343306 /* RTSliderView.xcdatamodeld in Sources */,
 				E0A1D5121D3CEE9200343306 /* AppDelegate.m in Sources */,
 				E0A1D50F1D3CEE9200343306 /* main.m in Sources */,
 			);
@@ -317,19 +313,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E0A1D5191D3CEE9200343306 /* RTSliderView.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E0A1D51A1D3CEE9200343306 /* RTSliderView.xcdatamodel */,
-			);
-			currentVersion = E0A1D51A1D3CEE9200343306 /* RTSliderView.xcdatamodel */;
-			path = RTSliderView.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E0A1D5021D3CEE9200343306 /* Project object */;
 }
