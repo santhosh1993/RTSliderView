@@ -44,10 +44,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F35D7231D4A174000594969 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				E0A1D5461D3D0C0100343306 /* slider_thumb.png */,
+				E0A1D5431D3CEEA400343306 /* RTSliderView.h */,
+				E0A1D5441D3CEEA400343306 /* RTSliderView.m */,
+			);
+			name = Resourses;
+			path = RTSliderView;
+			sourceTree = "<group>";
+		};
 		E0A1D5011D3CEE9200343306 = {
 			isa = PBXGroup;
 			children = (
 				E0A1D50C1D3CEE9200343306 /* RTSliderView */,
+				7F35D7231D4A174000594969 /* Resourses */,
 				E0A1D50B1D3CEE9200343306 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,9 +79,6 @@
 				E0A1D5111D3CEE9200343306 /* AppDelegate.m */,
 				E0A1D5131D3CEE9200343306 /* ViewController.h */,
 				E0A1D5141D3CEE9200343306 /* ViewController.m */,
-				E0A1D5431D3CEEA400343306 /* RTSliderView.h */,
-				E0A1D5441D3CEEA400343306 /* RTSliderView.m */,
-				E0A1D5461D3D0C0100343306 /* slider_thumb.png */,
 				E0A1D5161D3CEE9200343306 /* Main.storyboard */,
 				E0A1D51C1D3CEE9200343306 /* Assets.xcassets */,
 				E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */,

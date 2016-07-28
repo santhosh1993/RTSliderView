@@ -18,6 +18,7 @@
     
     UIView *sliderBgView,*selectedBarVw;
     IBInspectable NSInteger noOfSliders;
+    
 }
 
 @end
@@ -25,6 +26,7 @@
 @implementation RTSliderView
 @synthesize sliderType = sliderType;
 @synthesize sliderImg = sliderImg;
+@synthesize sliderValue,leftSliderValue,rightSliderValue;
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -67,7 +69,13 @@
     
     [self addSubview:(sliderType == SliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
     self.sliderImg = [UIImage imageNamed:@"slider_thumb"];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeOrientation:)
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 #pragma mark - SINGLE SLIDER METHODS
@@ -166,9 +174,9 @@
         selectedBarVw.frame = CGRectMake(selectedBarVw.frame.origin.x,selectedBarVw.frame.origin.y,tapView.frame.origin.x,selectedBarVw.frame.size.height);
         
         double value = (tapView.frame.origin.x)/barView.bounds.size.width;
-        NSNumber *percentageCovered = [NSNumber numberWithDouble:value*(self.maximumValue-self.minimumValue) + self.minimumValue];
-
-        [self valueChanged:@[percentageCovered]];
+        sliderValue = value*(self.maximumValue-self.minimumValue) + self.minimumValue;
+        
+        [self valueChanged:(recognizer.state == UIGestureRecognizerStateEnded) ? YES : NO];
     }
     
     [recognizer setTranslation:CGPointZero inView:self];
@@ -192,6 +200,8 @@
     
     CGPoint translation = [recognizer translationInView:self];
     translation = (rightTapView.frame.origin.x + translation.x > barView.bounds.size.width) ? CGPointMake(barView.frame.size.width - rightTapView.frame.origin.x, translation.y) :translation ;
+    
+    translation = (rightTapView.frame.origin.x + translation.x < leftTapView.frame.origin.x) ? CGPointMake(leftTapView.frame.origin.x - rightTapView.frame.origin.x, translation.y) :translation ;
 
     if (rightTapView.frame.origin.x + translation.x <= barView.bounds.size.width && rightTapView.frame.origin.x + translation.x >= leftTapView.frame.origin.x)
     {
@@ -206,30 +216,31 @@
     [movableView.superview bringSubviewToFront:movableView];
 
     movableView.frame = CGRectMake(movableView.frame.origin.x + translation.x, movableView.frame.origin.y, movableView.frame.size.width, movableView.frame.size.height);
+    
     double leftValue = (leftTapView.frame.origin.x)/barView.bounds.size.width;
     double rightValue = (rightTapView.frame.origin.x)/barView.bounds.size.width;
-
-    selectedBarVw.frame = CGRectMake(leftTapView.frame.origin.x,selectedBarVw.frame.origin.y,rightTapView.frame.origin.x-leftTapView.frame.origin.x,selectedBarVw.frame.size.height);
     
-    NSNumber *percentageleftCovered = [NSNumber numberWithDouble:self.minimumValue + (self.maximumValue - self.minimumValue)*leftValue];
-    NSNumber *percentageRightCovered = [NSNumber numberWithDouble:self.minimumValue + (self.maximumValue - self.minimumValue)*rightValue];
+    leftSliderValue = self.minimumValue + (self.maximumValue - self.minimumValue)*leftValue;
+    rightSliderValue = self.minimumValue + (self.maximumValue - self.minimumValue)*rightValue;
+ 
+    selectedBarVw.frame = CGRectMake(leftTapView.frame.origin.x,selectedBarVw.frame.origin.y,rightTapView.frame.origin.x-leftTapView.frame.origin.x,selectedBarVw.frame.size.height);
 
-    [self valueChanged:@[percentageleftCovered,percentageRightCovered]];
+    [self valueChanged:(state == UIGestureRecognizerStateEnded) ? YES : NO];
 }
 
 #define mark - SLIDER VIEW DELEGATE
 
-- (void)valueChanged:(NSArray *)valuesAry
+- (void)valueChanged:(BOOL)gestureEnded
 {
-    if ([self.delegate respondsToSelector:@selector(sliderView:valueChanged:)])
+    if ([self.delegate respondsToSelector:@selector(valueChangedForSliderView:)])
     {
         if (self.isContinuous)
         {
-            [self.delegate sliderView:self valueChanged:valuesAry];
+            [self.delegate valueChangedForSliderView:self];
         }
-        else
+        else if(gestureEnded)
         {
-            [self.delegate sliderView:self valueChanged:valuesAry];
+            [self.delegate valueChangedForSliderView:self];
         }
     }
 }
@@ -259,7 +270,8 @@
 {
     assert(self.minimumValue <= value);
     assert(self.sliderType == SliderTypeSingleSlider);
-
+    
+    sliderValue = value;
     if (self.minimumValue <= value && value <= self.maximumValue) {
         double xPos = (value - self.minimumValue) * barView.bounds.size.width/(self.maximumValue - self.minimumValue);
         NSLog(@"%f",xPos);
@@ -275,7 +287,6 @@
 
 - (void)setleftSliderPosition:(double)leftValue andRightPosition:(double)rightValue
 {
-
     //given values should be valid
     assert(self.minimumValue <= leftValue);
     assert(self.maximumValue >= rightValue);
@@ -284,6 +295,9 @@
 
     //slider should be Dual slider
     assert(self.sliderType == SliderTypeDoubleSlider);
+    
+    leftSliderValue = leftValue;
+    rightSliderValue = rightValue;
 
     double xPosleft = (leftValue - self.minimumValue)*barView.bounds.size.width/(self.maximumValue - self.minimumValue);
     leftTapView.frame = CGRectMake(xPosleft,leftTapView.frame.origin.y,leftTapView.frame.size.width,leftTapView.frame.size.height);
@@ -295,6 +309,17 @@
     rightTapView.frame = CGRectMake(xPosRight,rightTapView.frame.origin.y,rightTapView.frame.size.width,rightTapView.frame.size.height);
     selectedBarVw.frame = CGRectMake(xPosleft,selectedBarVw.frame.origin.y,xPosRight-xPosleft,selectedBarVw.frame.size.height);
 
+}
+
+- (void)didChangeOrientation:(NSNotification *)notification
+{
+    [self layoutSubviews];
+    [self performSelector:@selector(updateView) withObject:nil afterDelay:0.1];
+}
+
+- (void)updateView
+{
+    (sliderType == SliderTypeSingleSlider) ? [self setSingleSliderPostion:sliderValue] : [self setleftSliderPosition:leftSliderValue andRightPosition:rightSliderValue];
 }
 
 @end

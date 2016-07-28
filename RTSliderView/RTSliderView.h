@@ -33,6 +33,10 @@ typedef NS_ENUM(NSInteger,SliderType)
 @property(nonatomic)IBInspectable float minimumValue;
 @property(nonatomic)IBInspectable float maximumValue;
 
+@property(nonatomic,readonly) double sliderValue;
+@property(nonatomic,readonly) double leftSliderValue;
+@property(nonatomic,readonly) double rightSliderValue;
+
 - (instancetype)initWithFrame:(CGRect)frame ForSlider:(SliderType)noOfSlider;
 - (void)setSingleSliderPostion:(double)value;
 - (void)setleftSliderPosition:(double)leftValue andRightPosition:(double)rightValue;
@@ -41,6 +45,6 @@ typedef NS_ENUM(NSInteger,SliderType)
 
 @protocol SliderViewDelegate <NSObject>
 
-- (void)sliderView:(RTSliderView *)slider valueChanged:(NSArray *)valuesAry;
+- (void)valueChangedForSliderView:(RTSliderView *)sliderVw;
 
 @end

@@ -53,20 +53,18 @@
     
 }
 
--(void)sliderView:(RTSliderView *)slider valueChanged:(NSArray *)valuesAry {
+- (void)valueChangedForSliderView:(RTSliderView *)sliderVw {
     
-    if (slider == self.singleSlider) {
-        
-        NSLog(@"single slider .. %@", valuesAry.firstObject);
-        self.singleSliderValueLbl.text = [NSString stringWithFormat:@"%.2f", [valuesAry.firstObject floatValue]];
-        
+    if (sliderVw == self.singleSlider)
+    {
+        NSLog(@"single slider .. %f", sliderVw.sliderValue);
+        self.singleSliderValueLbl.text = [NSString stringWithFormat:@"%.2f",sliderVw.sliderValue];
     }
-    else {
-        
-        NSLog(@"Dual slider .. left : %@ and right : %@", valuesAry.firstObject, valuesAry.lastObject);
-        self.dualSliderLeftValueLbl.text = [NSString stringWithFormat:@"%.2f", [valuesAry.firstObject floatValue]];
-        self.dualSliderRightValueLbl.text = [NSString stringWithFormat:@"%.2f", [valuesAry.lastObject floatValue]];
-
+    else
+    {
+        NSLog(@"Dual slider .. left : %f and right : %f", sliderVw.leftSliderValue,sliderVw.rightSliderValue);
+        self.dualSliderLeftValueLbl.text = [NSString stringWithFormat:@"%.2f", sliderVw.leftSliderValue];
+        self.dualSliderRightValueLbl.text = [NSString stringWithFormat:@"%.2f", sliderVw.rightSliderValue];
     }
     
 }
