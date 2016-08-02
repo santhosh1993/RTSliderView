@@ -9,26 +9,25 @@
 #import <UIKit/UIKit.h>
 
 
-typedef NS_ENUM(NSInteger,SliderType)
+typedef NS_ENUM(NSInteger,RTSliderType)
 {
-    SliderTypeSingleSlider = 1,
-    SliderTypeDoubleSlider = 2,
+    RTSliderTypeSingleSlider = 1,
+    RTSliderTypeDoubleSlider = 2,
 };
 
-@protocol SliderViewDelegate;
+@protocol RTSliderViewDelegate;
 
 @interface RTSliderView : UIView
 
-@property (nonatomic, readonly) SliderType sliderType;
+@property (nonatomic, readonly) RTSliderType sliderType;
 
-@property (nonatomic,weak) id<SliderViewDelegate> delegate;
+@property (nonatomic,weak) id<RTSliderViewDelegate> delegate;
 
 @property (nonatomic,weak) UIColor *barColor;
 @property (nonatomic,weak) UIColor *selectedPortionColor;
 @property (nonatomic,weak) IBInspectable UIImage *sliderImg;
 
-@property(nonatomic, getter=isContinuous)IBInspectable BOOL continuous;
-
+@property (nonatomic) double stepSize;
 
 @property(nonatomic)IBInspectable float minimumValue;
 @property(nonatomic)IBInspectable float maximumValue;
@@ -37,13 +36,13 @@ typedef NS_ENUM(NSInteger,SliderType)
 @property(nonatomic,readonly) double leftSliderValue;
 @property(nonatomic,readonly) double rightSliderValue;
 
-- (instancetype)initWithFrame:(CGRect)frame ForSlider:(SliderType)noOfSlider;
+- (instancetype)initWithFrame:(CGRect)frame ForSlider:(RTSliderType)noOfSlider;
 - (void)setSingleSliderPostion:(double)value;
-- (void)setleftSliderPosition:(double)leftValue andRightPosition:(double)rightValue;
+- (void)setLeftSliderPosition:(double)leftValue andRightPosition:(double)rightValue;
 
 @end
 
-@protocol SliderViewDelegate <NSObject>
+@protocol RTSliderViewDelegate <NSObject>
 
 - (void)valueChangedForSliderView:(RTSliderView *)sliderVw;
 

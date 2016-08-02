@@ -10,7 +10,7 @@
 #import "RTSliderView.h"
 
 
-@interface ViewController () <SliderViewDelegate>
+@interface ViewController () <RTSliderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet RTSliderView *singleSlider;
 @property (weak, nonatomic) IBOutlet RTSliderView *dualSlider;
@@ -30,13 +30,13 @@
         
     self.singleSlider.delegate = self;
     self.dualSlider.delegate = self;
-    self.singleSlider.continuous = true;
     
     self.singleSlider.minimumValue = 10;
     self.singleSlider.maximumValue = 50;
 
     self.dualSlider.minimumValue = 10;
     self.dualSlider.maximumValue = 500;
+    self.dualSlider.stepSize = 10.0;
     
     self.singleSlider.barColor = [UIColor grayColor];
     self.dualSlider.barColor = [[UIColor orangeColor] colorWithAlphaComponent:0.8];
@@ -45,10 +45,9 @@
         [self.singleSlider setSingleSliderPostion:10.0];
         self.singleSliderValueLbl.text = [NSString stringWithFormat:@"%.2f", 10.0];
 
-        [self.dualSlider setleftSliderPosition:50 andRightPosition:60];
+        [self.dualSlider setLeftSliderPosition:50 andRightPosition:60];
         self.dualSliderLeftValueLbl.text = [NSString stringWithFormat:@"%.2f", 50.0];
         self.dualSliderRightValueLbl.text = [NSString stringWithFormat:@"%.2f", 60.0];
-
     });
     
 }
@@ -62,7 +61,7 @@
     }
     else
     {
-        NSLog(@"Dual slider .. left : %f and right : %f", sliderVw.leftSliderValue,sliderVw.rightSliderValue);
+        //NSLog(@"Dual slider .. left : %f and right : %f", sliderVw.leftSliderValue,sliderVw.rightSliderValue);
         self.dualSliderLeftValueLbl.text = [NSString stringWithFormat:@"%.2f", sliderVw.leftSliderValue];
         self.dualSliderRightValueLbl.text = [NSString stringWithFormat:@"%.2f", sliderVw.rightSliderValue];
     }

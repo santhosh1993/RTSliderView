@@ -16,7 +16,7 @@
     UIImageView *rightSliderImg;
     UIView *barView;
     
-    UIView *sliderBgView,*selectedBarVw;
+    UIView *sliderBgView,*selectedBarView;
     IBInspectable NSInteger noOfSliders;
     
 }
@@ -36,7 +36,7 @@
 }
 */
 
-- (instancetype)initWithFrame:(CGRect)frame ForSlider:(SliderType)noOfSlider
+- (instancetype)initWithFrame:(CGRect)frame ForSlider:(RTSliderType)noOfSlider
 {
     self = [super initWithFrame:frame];
     sliderType = noOfSlider;
@@ -56,7 +56,7 @@
 
 -(void)awakeFromNib {
     
-    sliderType = (noOfSliders == 1) ? SliderTypeSingleSlider : SliderTypeDoubleSlider;
+    sliderType = (noOfSliders == 1) ? RTSliderTypeSingleSlider : RTSliderTypeDoubleSlider;
     [self initializer];
     
 }
@@ -66,8 +66,9 @@
     
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.userInteractionEnabled = YES;
+    self.stepSize = 0;
     
-    [self addSubview:(sliderType == SliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
+    [self addSubview:(sliderType == RTSliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
     self.sliderImg = [UIImage imageNamed:@"slider_thumb"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeOrientation:)
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
@@ -78,26 +79,32 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
+
+- (void)createBarView
+{
+    sliderBgView = [[UIView alloc] initWithFrame:self.bounds];
+    sliderBgView.backgroundColor = [UIColor clearColor];
+    sliderBgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    barView = [[UIView alloc] initWithFrame:CGRectMake(20 , sliderBgView.frame.size.height/2 - 2 , sliderBgView.frame.size.width - 40 , 4)];
+    barView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth;
+    barView.backgroundColor = [UIColor blackColor];
+    barView.layer.cornerRadius = CGRectGetHeight(barView.bounds)/2.0;
+    [sliderBgView addSubview:barView];
+    
+    selectedBarView = [[UIView alloc] initWithFrame:CGRectMake(0,0,barView.frame.size.width,barView.frame.size.height)];
+    selectedBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    selectedBarView.backgroundColor = [UIColor blueColor];
+    selectedBarView.layer.cornerRadius = CGRectGetHeight(selectedBarView.bounds)/2.0;
+    [barView addSubview:selectedBarView];
+}
+
 #pragma mark - SINGLE SLIDER METHODS
 
 - (UIView *)createSingleSlider
 {
-    sliderBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frame.size.width, self.frame.size.height)];
-    sliderBgView.backgroundColor = [UIColor clearColor];
-    sliderBgView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    
-    barView = [[UIView alloc] initWithFrame:CGRectMake(20 , sliderBgView.frame.size.height/2 - 2 , sliderBgView.frame.size.width - 40 , 4)];
-    barView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    barView.backgroundColor = [UIColor grayColor];
-    barView.layer.cornerRadius = CGRectGetHeight(barView.bounds)/2.0;
-    [sliderBgView addSubview:barView];
-    
-    selectedBarVw = [[UIView alloc] initWithFrame:CGRectMake(0,0,barView.frame.size.width,barView.frame.size.height)];
-    selectedBarVw.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    selectedBarVw.backgroundColor = [UIColor blueColor];
-    selectedBarVw.layer.cornerRadius = CGRectGetHeight(selectedBarVw.bounds)/2.0;
-    [barView addSubview:selectedBarVw];
-    
+    [self createBarView];
+
     tapView = [[UIView alloc] initWithFrame:CGRectMake(0 , barView.frame.origin.y - 18 , 40 , 40)];
     tapView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
     tapView.backgroundColor = [UIColor clearColor];
@@ -118,22 +125,8 @@
 
 - (UIView *)createDoubleSlider
 {
-    sliderBgView = [[UIView alloc] initWithFrame:self.bounds];
-    sliderBgView.backgroundColor = [UIColor clearColor];
-    sliderBgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    barView = [[UIView alloc] initWithFrame:CGRectMake(20 , sliderBgView.frame.size.height/2 - 2 , sliderBgView.frame.size.width - 40 , 4)];
-    barView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth;
-    barView.backgroundColor = [UIColor blackColor];
-    barView.layer.cornerRadius = CGRectGetHeight(barView.bounds)/2.0;
-    [sliderBgView addSubview:barView];
-    
-    selectedBarVw = [[UIView alloc] initWithFrame:CGRectMake(0,0,barView.frame.size.width,barView.frame.size.height)];
-    selectedBarVw.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    selectedBarVw.backgroundColor = [UIColor blueColor];
-    selectedBarVw.layer.cornerRadius = CGRectGetHeight(selectedBarVw.bounds)/2.0;
-    [barView addSubview:selectedBarVw];
-    
+    [self createBarView];
+
     leftTapView = [[UIView alloc] initWithFrame:CGRectMake(0 , barView.frame.origin.y - 18 , 40 , 40)];
     leftTapView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
     leftTapView.backgroundColor = [UIColor clearColor];
@@ -171,12 +164,12 @@
     if (tapView.frame.origin.x + translation.x >= 0 && tapView.frame.origin.x + translation.x <= barView.bounds.size.width)
     {
         tapView.frame = CGRectMake(tapView.frame.origin.x + translation.x, tapView.frame.origin.y, tapView.frame.size.width, tapView.frame.size.height);
-        selectedBarVw.frame = CGRectMake(selectedBarVw.frame.origin.x,selectedBarVw.frame.origin.y,tapView.frame.origin.x,selectedBarVw.frame.size.height);
+        selectedBarView.frame = CGRectMake(selectedBarView.frame.origin.x,selectedBarView.frame.origin.y,tapView.frame.origin.x,selectedBarView.frame.size.height);
         
         double value = (tapView.frame.origin.x)/barView.bounds.size.width;
-        sliderValue = value*(self.maximumValue-self.minimumValue) + self.minimumValue;
+        sliderValue = value * (self.maximumValue - self.minimumValue) + self.minimumValue;
         
-        [self valueChanged:(recognizer.state == UIGestureRecognizerStateEnded) ? YES : NO];
+        [self valueChanged];
     }
     
     [recognizer setTranslation:CGPointZero inView:self];
@@ -223,33 +216,47 @@
     leftSliderValue = self.minimumValue + (self.maximumValue - self.minimumValue)*leftValue;
     rightSliderValue = self.minimumValue + (self.maximumValue - self.minimumValue)*rightValue;
  
-    selectedBarVw.frame = CGRectMake(leftTapView.frame.origin.x,selectedBarVw.frame.origin.y,rightTapView.frame.origin.x-leftTapView.frame.origin.x,selectedBarVw.frame.size.height);
+    selectedBarView.frame = CGRectMake(leftTapView.frame.origin.x,selectedBarView.frame.origin.y,rightTapView.frame.origin.x-leftTapView.frame.origin.x,selectedBarView.frame.size.height);
 
-    [self valueChanged:(state == UIGestureRecognizerStateEnded) ? YES : NO];
+    [self valueChanged];
 }
 
 #define mark - SLIDER VIEW DELEGATE
 
-- (void)valueChanged:(BOOL)gestureEnded
+- (void)valueChanged
 {
-    if ([self.delegate respondsToSelector:@selector(valueChangedForSliderView:)])
+    if (self.stepSize != 0)
     {
-        if (self.isContinuous)
+        if (sliderType == RTSliderTypeSingleSlider)
         {
-            [self.delegate valueChangedForSliderView:self];
+            sliderValue = [self updateTheSliderValuesAccordingToTheStepSize:sliderValue];
         }
-        else if(gestureEnded)
+        else
         {
-            [self.delegate valueChangedForSliderView:self];
+            leftSliderValue = [self updateTheSliderValuesAccordingToTheStepSize:leftSliderValue];
+            rightSliderValue = [self updateTheSliderValuesAccordingToTheStepSize:rightSliderValue];
         }
     }
+    
+    if ([self.delegate respondsToSelector:@selector(valueChangedForSliderView:)])
+    {
+        [self.delegate valueChangedForSliderView:self];
+    }
+}
+
+- (double)updateTheSliderValuesAccordingToTheStepSize:(double)value
+{
+    double reminder = fmod(value,self.stepSize);
+    value = ((reminder <= self.stepSize/2) ? value - reminder : (value <= self.minimumValue) ? self.minimumValue : ((value + self.stepSize) >= self.maximumValue) ? self.maximumValue : value + self.stepSize - reminder) ;
+    
+    return value;
 }
 
 #pragma mark - PROPERTY METHODS
 
 - (void)setSelectedPortionColor:(UIColor *)selectedPortionColor
 {
-    selectedBarVw.backgroundColor = selectedPortionColor;
+    selectedBarView.backgroundColor = selectedPortionColor;
 }
 
 - (void)setBarColor:(UIColor *)barColor
@@ -269,15 +276,15 @@
 - (void)setSingleSliderPostion:(double)value
 {
     assert(self.minimumValue <= value);
-    assert(self.sliderType == SliderTypeSingleSlider);
+    assert(self.sliderType == RTSliderTypeSingleSlider);
     
     sliderValue = value;
     if (self.minimumValue <= value && value <= self.maximumValue) {
         double xPos = (value - self.minimumValue) * barView.bounds.size.width/(self.maximumValue - self.minimumValue);
-        NSLog(@"%f",xPos);
+        //NSLog(@"%f",xPos);
         
         tapView.frame = CGRectMake(xPos,tapView.frame.origin.y,tapView.frame.size.width,tapView.frame.size.height);
-        selectedBarVw.frame = CGRectMake(selectedBarVw.frame.origin.x,selectedBarVw.frame.origin.y,xPos,selectedBarVw.frame.size.height);
+        selectedBarView.frame = CGRectMake(selectedBarView.frame.origin.x,selectedBarView.frame.origin.y,xPos,selectedBarView.frame.size.height);
     }
     else {
         
@@ -285,7 +292,7 @@
     
 }
 
-- (void)setleftSliderPosition:(double)leftValue andRightPosition:(double)rightValue
+- (void)setLeftSliderPosition:(double)leftValue andRightPosition:(double)rightValue
 {
     //given values should be valid
     assert(self.minimumValue <= leftValue);
@@ -294,20 +301,20 @@
     assert(self.maximumValue > self.minimumValue);
 
     //slider should be Dual slider
-    assert(self.sliderType == SliderTypeDoubleSlider);
+    assert(self.sliderType == RTSliderTypeDoubleSlider);
     
     leftSliderValue = leftValue;
     rightSliderValue = rightValue;
 
     double xPosleft = (leftValue - self.minimumValue)*barView.bounds.size.width/(self.maximumValue - self.minimumValue);
     leftTapView.frame = CGRectMake(xPosleft,leftTapView.frame.origin.y,leftTapView.frame.size.width,leftTapView.frame.size.height);
-    NSLog(@"left: %f",xPosleft);
+    //NSLog(@"left: %f",xPosleft);
 
     double xPosRight = ((rightValue - self.minimumValue)*barView.bounds.size.width/(self.maximumValue - self.minimumValue));
-    NSLog(@"right: %f",xPosRight);
+    //NSLog(@"right: %f",xPosRight);
 
     rightTapView.frame = CGRectMake(xPosRight,rightTapView.frame.origin.y,rightTapView.frame.size.width,rightTapView.frame.size.height);
-    selectedBarVw.frame = CGRectMake(xPosleft,selectedBarVw.frame.origin.y,xPosRight-xPosleft,selectedBarVw.frame.size.height);
+    selectedBarView.frame = CGRectMake(xPosleft,selectedBarView.frame.origin.y,xPosRight-xPosleft,selectedBarView.frame.size.height);
 
 }
 
@@ -319,7 +326,7 @@
 
 - (void)updateView
 {
-    (sliderType == SliderTypeSingleSlider) ? [self setSingleSliderPostion:sliderValue] : [self setleftSliderPosition:leftSliderValue andRightPosition:rightSliderValue];
+    (sliderType == RTSliderTypeSingleSlider) ? [self setSingleSliderPostion:sliderValue] : [self setLeftSliderPosition:leftSliderValue andRightPosition:rightSliderValue];
 }
 
 @end
