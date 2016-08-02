@@ -1,9 +1,9 @@
 //
-//  SliderView.m
-//  Fetch
+//  RTSliderView.m
+//  RTSliderView
 //
-//  Created by Santhosh on 23/12/15.
-//  Copyright © 2015 Santhosh. All rights reserved.
+//  Created by Santhosh on 15/07/16.
+//  Copyright © 2016 Santhosh. All rights reserved.
 //
 
 #import "RTSliderView.h"
@@ -25,7 +25,6 @@
 
 @implementation RTSliderView
 @synthesize sliderType = sliderType;
-@synthesize sliderImg = sliderImg;
 @synthesize sliderValue,leftSliderValue,rightSliderValue;
 
 /*
@@ -66,12 +65,21 @@
     
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.userInteractionEnabled = YES;
-    self.stepSize = 0;
-    
+    [self setDefaultValue];
     [self addSubview:(sliderType == RTSliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
-    self.sliderImg = [UIImage imageNamed:@"slider_thumb"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeOrientation:)
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+}
+
+- (void)setDefaultValue
+{
+    self.stepSize = (self.stepSize == 0) ? 0 :self.stepSize;
+    self.minimumValue = (self.minimumValue == 0) ? 0 : self.minimumValue;
+    self.maximumValue = (self.maximumValue == 100) ? 100 : self.maximumValue;
+    
+    self.barColor = (self.barColor) ? self.barColor : [UIColor blackColor];
+    self.selectedPortionColor = (self.selectedPortionColor)? self.selectedPortionColor :[UIColor blueColor];
+    self.sliderImg = (self.sliderImg) ? self.sliderImg : [UIImage imageNamed:@"slider_thumb"];
 }
 
 - (void)dealloc
@@ -88,13 +96,13 @@
     
     barView = [[UIView alloc] initWithFrame:CGRectMake(20 , sliderBgView.frame.size.height/2 - 2 , sliderBgView.frame.size.width - 40 , 4)];
     barView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth;
-    barView.backgroundColor = [UIColor blackColor];
+    barView.backgroundColor = self.barColor;
     barView.layer.cornerRadius = CGRectGetHeight(barView.bounds)/2.0;
     [sliderBgView addSubview:barView];
     
     selectedBarView = [[UIView alloc] initWithFrame:CGRectMake(0,0,barView.frame.size.width,barView.frame.size.height)];
     selectedBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    selectedBarView.backgroundColor = [UIColor blueColor];
+    selectedBarView.backgroundColor = self.selectedPortionColor;
     selectedBarView.layer.cornerRadius = CGRectGetHeight(selectedBarView.bounds)/2.0;
     [barView addSubview:selectedBarView];
 }
@@ -114,6 +122,7 @@
     
     leftSliderImg = [[UIImageView alloc] initWithFrame:CGRectMake(tapView.frame.size.width/2 - 10 , tapView.frame.size.height/2 - 10 , 20 , 20 )];
     leftSliderImg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    leftSliderImg.image = self.sliderImg;
     
     [tapView addSubview:leftSliderImg];
     [sliderBgView addSubview:tapView];
@@ -143,10 +152,12 @@
     
     leftSliderImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftTapView.frame.size.width/2 - 10 , leftTapView.frame.size.height/2 - 10 , 20 , 20 )];
     leftSliderImg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    leftSliderImg.image = self.sliderImg;
     [leftTapView addSubview:leftSliderImg];
     
     rightSliderImg = [[UIImageView alloc] initWithFrame:CGRectMake(rightTapView.frame.size.width/2 - 10 , rightTapView.frame.size.height/2 - 10 , 20 , 20 )];
     rightSliderImg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    rightSliderImg.image = self.sliderImg;
     [rightTapView addSubview:rightSliderImg];
     
     [sliderBgView addSubview:leftTapView];
@@ -256,17 +267,20 @@
 
 - (void)setSelectedPortionColor:(UIColor *)selectedPortionColor
 {
+    _selectedPortionColor = selectedPortionColor;
     selectedBarView.backgroundColor = selectedPortionColor;
 }
 
 - (void)setBarColor:(UIColor *)barColor
 {
+    _barColor = barColor;
     barView.backgroundColor = barColor;
 }
 
 
 - (void)setSliderImg:(UIImage *)img
 {
+    _sliderImg = img;
     leftSliderImg.image = img;
     rightSliderImg.image = img;
 }
