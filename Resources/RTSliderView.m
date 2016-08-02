@@ -40,7 +40,7 @@
     self = [super initWithFrame:frame];
     sliderType = noOfSlider;
     
-    [self initializer];
+    [self commonInit];
     return self;
 }
 
@@ -56,17 +56,20 @@
 -(void)awakeFromNib {
     
     sliderType = (noOfSliders == 1) ? RTSliderTypeSingleSlider : RTSliderTypeDoubleSlider;
-    [self initializer];
+    [self commonInit];
     
 }
 
 
-- (void) initializer {
+- (void) commonInit {
     
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.userInteractionEnabled = YES;
+    
     [self setDefaultValue];
+    
     [self addSubview:(sliderType == RTSliderTypeSingleSlider) ? [self createSingleSlider] : [self createDoubleSlider]];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeOrientation:)
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
@@ -75,7 +78,7 @@
 {
     self.stepSize = (self.stepSize == 0) ? 0 :self.stepSize;
     self.minimumValue = (self.minimumValue == 0) ? 0 : self.minimumValue;
-    self.maximumValue = (self.maximumValue == 100) ? 100 : self.maximumValue;
+    self.maximumValue = (self.maximumValue == 0) ? 100 : self.maximumValue;
     
     self.barColor = (self.barColor) ? self.barColor : [UIColor blackColor];
     self.selectedPortionColor = (self.selectedPortionColor)? self.selectedPortionColor :[UIColor blueColor];
