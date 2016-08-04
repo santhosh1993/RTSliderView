@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger,RTSliderType)
 /**
     sliderImg is for the thumb images for the slider
  */
-@property (nonatomic,strong) IBInspectable UIImage *sliderImg; // Default value slider_thumb.png
+@property (nonatomic,strong) IBInspectable UIImage *thumbImage; // Default value slider_thumb.png
 
 /**
     Step size is used to get the values in those steps in the call back

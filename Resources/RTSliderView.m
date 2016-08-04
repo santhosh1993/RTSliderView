@@ -82,7 +82,7 @@
     
     self.barColor = (self.barColor) ? self.barColor : [UIColor blackColor];
     self.selectedPortionColor = (self.selectedPortionColor)? self.selectedPortionColor :[UIColor blueColor];
-    self.sliderImg = (self.sliderImg) ? self.sliderImg : [UIImage imageNamed:@"slider_thumb"];
+    self.thumbImage = (self.thumbImage) ? self.thumbImage : [UIImage imageNamed:@"slider_thumb"];
 }
 
 - (void)dealloc
@@ -125,7 +125,7 @@
     
     leftSliderImg = [[UIImageView alloc] initWithFrame:CGRectMake(tapView.frame.size.width/2 - 10 , tapView.frame.size.height/2 - 10 , 20 , 20 )];
     leftSliderImg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    leftSliderImg.image = self.sliderImg;
+    leftSliderImg.image = self.thumbImage;
     
     [tapView addSubview:leftSliderImg];
     [sliderBgView addSubview:tapView];
@@ -155,12 +155,12 @@
     
     leftSliderImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftTapView.frame.size.width/2 - 10 , leftTapView.frame.size.height/2 - 10 , 20 , 20 )];
     leftSliderImg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    leftSliderImg.image = self.sliderImg;
+    leftSliderImg.image = self.thumbImage;
     [leftTapView addSubview:leftSliderImg];
     
     rightSliderImg = [[UIImageView alloc] initWithFrame:CGRectMake(rightTapView.frame.size.width/2 - 10 , rightTapView.frame.size.height/2 - 10 , 20 , 20 )];
     rightSliderImg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    rightSliderImg.image = self.sliderImg;
+    rightSliderImg.image = self.thumbImage;
     [rightTapView addSubview:rightSliderImg];
     
     [sliderBgView addSubview:leftTapView];
@@ -281,11 +281,11 @@
 }
 
 
-- (void)setSliderImg:(UIImage *)img
+- (void)setThumbImage:(UIImage *)thumbImage
 {
-    _sliderImg = img;
-    leftSliderImg.image = img;
-    rightSliderImg.image = img;
+    _thumbImage = thumbImage;
+    leftSliderImg.image = thumbImage;
+    rightSliderImg.image = thumbImage;
 }
 
 #pragma mark - PUBLIC METHODS
