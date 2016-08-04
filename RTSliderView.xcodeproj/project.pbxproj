@@ -15,7 +15,6 @@
 		E0A1D5181D3CEE9200343306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D5161D3CEE9200343306 /* Main.storyboard */; };
 		E0A1D51D1D3CEE9200343306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51C1D3CEE9200343306 /* Assets.xcassets */; };
 		E0A1D5201D3CEE9200343306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A1D51E1D3CEE9200343306 /* LaunchScreen.storyboard */; };
-		E0FBBD7A1D5377A800A85BB8 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E0FBBD791D5377A800A85BB8 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 		E0A1D51C1D3CEE9200343306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0A1D51F1D3CEE9200343306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0A1D5211D3CEE9200343306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0FBBD791D5377A800A85BB8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +75,6 @@
 		E0A1D50C1D3CEE9200343306 /* RTSliderView */ = {
 			isa = PBXGroup;
 			children = (
-				E0FBBD791D5377A800A85BB8 /* README.md */,
 				E0A1D5101D3CEE9200343306 /* AppDelegate.h */,
 				E0A1D5111D3CEE9200343306 /* AppDelegate.m */,
 				E0A1D5131D3CEE9200343306 /* ViewController.h */,
@@ -172,7 +169,6 @@
 			files = (
 				E0A1D5151D3CEE9200343306 /* ViewController.m in Sources */,
 				7FFA98681D50D1A300878D49 /* RTSliderView.m in Sources */,
-				E0FBBD7A1D5377A800A85BB8 /* README.md in Sources */,
 				E0A1D5121D3CEE9200343306 /* AppDelegate.m in Sources */,
 				E0A1D50F1D3CEE9200343306 /* main.m in Sources */,
 			);
